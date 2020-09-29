@@ -30,6 +30,8 @@ public class Store {
     private User user;*/
 
     @OneToMany(mappedBy = "store", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Product> product;
+    private List<Product> product=new ArrayList<>();
 
+    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Order> order=new ArrayList<>();
 }
