@@ -1,5 +1,5 @@
 package com.pe.shotathome.config;
-
+/*
 import com.upc.orderapi.exceptions.GeneralServiceException;
 import com.upc.orderapi.exceptions.NoDataFoundException;
 import com.upc.orderapi.exceptions.ValidateServiceException;
@@ -43,4 +43,4 @@ public class ErrorHandlerConfig extends ResponseEntityExceptionHandler{
         WrapperResponse<?> response = new WrapperResponse<>(false, "Internal Server Error", null);
         return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
-}
+}*/

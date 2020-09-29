@@ -17,6 +17,7 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
     private Double price;
     private String detail;
@@ -26,4 +27,6 @@ public class Product {
     @JoinColumn(name = "store_id", nullable=false)
     private Store store;
 
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<OrderLines> orderLines;
 }
