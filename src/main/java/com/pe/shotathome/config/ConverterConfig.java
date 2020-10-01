@@ -1,7 +1,7 @@
 package com.pe.shotathome.config;
-/*
-import com.upc.orderapi.converters.OrderConverter;
-import com.upc.orderapi.converters.ProductConverter;
+
+import com.pe.shotathome.converters.OrderConverter;
+import com.pe.shotathome.converters.ProductConverter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,13 +19,12 @@ public class ConverterConfig {
     public ProductConverter getProductConverter() {
         return new ProductConverter();
     }
-
+/*
     @Bean
     public OrderConverter getOrderConverter() {
         DateTimeFormatter format = DateTimeFormatter.ofPattern(datetimeFormat);
         return new OrderConverter(format, getProductConverter());
     }
-
+*/
 
 }
-*/

@@ -3,7 +3,7 @@ package com.pe.shotathome.controller;
 
 
 import com.pe.shotathome.entity.Store;
-import com.pe.shotathome.exception.ResourceNotFoundException;
+import com.pe.shotathome.exeptions.ResourceNotFoundException;
 import com.pe.shotathome.repository.StoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -11,6 +11,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 
 public class StoreController {
@@ -20,7 +22,7 @@ public class StoreController {
 
     @GetMapping("/stores")
     public Page<Store> getStores(Pageable pageable) {
-        return StoreRepository.findAll(pageable);
+        return storeRepository.findAll(pageable);
     }
 
 
@@ -34,8 +36,8 @@ public class StoreController {
                                    @Valid @RequestBody Store storeRequest) {
         return storeRepository.findById(storeId)
                 .map(store -> {
-                    store.setTitle(storeRequest.getTitle());
-                    store.setDescription(storeRequest.getDescription());
+                    store.setAddress(storeRequest.getAddress());
+                    store.setName(storeRequest.getName());
                     return storeRepository.save(store);
                 }).orElseThrow(() -> new ResourceNotFoundException("Store not found with id " + storeId));
     }
