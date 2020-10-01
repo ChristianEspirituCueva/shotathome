@@ -10,6 +10,8 @@ import com.pe.shotathome.exeptions.ValidateServiceException;
 import com.pe.shotathome.repository.ProductRepository;
 import com.pe.shotathome.repository.StoreRepository;
 import com.pe.shotathome.validators.OrderValidator;
+import com.pe.shotathome.validators.ProductValidator;
+import com.pe.shotathome.validators.StoreValidator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -72,6 +74,36 @@ public class StoreService {
     }
 
     //FALTA LA PARTE DE TRANSACCIONAL
+    @Transactional
+    public Store save(Store store) {
+        try {
+            StoreValidator.save(store);
 
+            if(store.getId() == null) {
+                Store newStore = storeRepository.save(store);
+                return newStore;
+            }
+
+            Store exitStore = storeRepository.findById(store.getId())
+                    .orElseThrow(() -> new NoDataFoundException("No existe la tiendita"));
+
+
+            exitStore.setName(store.getName());
+            exitStore.setCity(store.getCity());
+            exitStore.setPhone(store.getPhone());
+            exitStore.setRUC(store.getRUC());
+            exitStore.setCountry(store.getCountry());
+            exitStore.setAddress(store.getAddress());
+
+            return exitStore;
+        } catch (ValidateServiceException | NoDataFoundException e) {
+            log.info(e.getMessage(), e);
+            throw e;
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            throw new GeneralServiceException(e.getMessage(), e);
+        }
+
+    }
 
 }
