@@ -1,9 +1,10 @@
 package com.pe.shotathome.config;
-/*
-import com.upc.orderapi.exceptions.GeneralServiceException;
-import com.upc.orderapi.exceptions.NoDataFoundException;
-import com.upc.orderapi.exceptions.ValidateServiceException;
-import com.upc.orderapi.utils.WrapperResponse;
+
+import com.pe.shotathome.exeptions.GeneralServiceException;
+import com.pe.shotathome.exeptions.NoDataFoundException;
+import com.pe.shotathome.exeptions.ValidateServiceException;
+import com.pe.shotathome.utils.WrapperResponse;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,4 +44,4 @@ public class ErrorHandlerConfig extends ResponseEntityExceptionHandler{
         WrapperResponse<?> response = new WrapperResponse<>(false, "Internal Server Error", null);
         return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
-}*/
+}

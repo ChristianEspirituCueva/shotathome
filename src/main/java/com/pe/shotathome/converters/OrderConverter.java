@@ -2,7 +2,9 @@ package com.pe.shotathome.converters;
 
 import com.pe.shotathome.dto.OrderDto;
 import com.pe.shotathome.entity.Order;
+import lombok.AllArgsConstructor;
 
+@AllArgsConstructor
 public class OrderConverter {
     public static Order DtoToEntity(OrderDto ord) {
         Order order=new Order();
