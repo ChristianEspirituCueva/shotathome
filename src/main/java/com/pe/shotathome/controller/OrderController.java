@@ -3,7 +3,7 @@ package com.pe.shotathome.controller;
 
 
 import com.pe.shotathome.entity.Order;
-import com.pe.shotathome.exception.ResourceNotFoundException;
+import com.pe.shotathome.exeptions.ResourceNotFoundException;
 import com.pe.shotathome.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -11,6 +11,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 
 public class OrderController {
@@ -20,7 +22,7 @@ public class OrderController {
 
     @GetMapping("/orders")
     public Page<Order> getOrders(Pageable pageable) {
-        return OrderRepository.findAll(pageable);
+        return orderRepository.findAll(pageable);
     }
 
 
@@ -34,8 +36,8 @@ public class OrderController {
                                    @Valid @RequestBody Order orderRequest) {
         return orderRepository.findById(orderId)
                 .map(order -> {
-                    order.setTitle(orderRequest.getTitle());
-                    order.setDescription(orderRequest.getDescription());
+                    order.setState(orderRequest.getState());
+                    order.setTotal(orderRequest.getTotal());
                     return orderRepository.save(order);
                 }).orElseThrow(() -> new ResourceNotFoundException("Order not found with id " + orderId));
     }

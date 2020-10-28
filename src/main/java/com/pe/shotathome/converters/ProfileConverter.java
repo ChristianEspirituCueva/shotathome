@@ -1,5 +1,5 @@
 package com.pe.shotathome.converters;
-
+/*
 import com.pe.shotathome.dto.ProfileDto;
 import com.pe.shotathome.entity.Profile;
 
@@ -26,4 +26,4 @@ public class ProfileConverter {
         profileDto.setCity(prf.getCity());
         return profileDto;
     }
-}
+}*/

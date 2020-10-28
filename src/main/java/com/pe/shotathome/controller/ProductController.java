@@ -3,7 +3,7 @@ package com.pe.shotathome.controller;
 
 
 import com.pe.shotathome.entity.Product;
-import com.pe.shotathome.exception.ResourceNotFoundException;
+import com.pe.shotathome.exeptions.ResourceNotFoundException;
 import com.pe.shotathome.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -11,6 +11,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 
 public class ProductController {
@@ -20,7 +22,7 @@ public class ProductController {
 
     @GetMapping("/products")
     public Page<Product> getProducts(Pageable pageable) {
-        return ProductRepository.findAll(pageable);
+        return productRepository.findAll(pageable);
     }
 
 
@@ -34,8 +36,8 @@ public class ProductController {
                                    @Valid @RequestBody Product productRequest) {
         return productRepository.findById(productId)
                 .map(product -> {
-                    product.setTitle(productRequest.getTitle());
-                    product.setDescription(productRequest.getDescription());
+                    product.setName(productRequest.getName());
+                    product.setPrice(productRequest.getPrice());
                     return productRepository.save(product);
                 }).orElseThrow(() -> new ResourceNotFoundException("Product not found with id " + productId));
     }
