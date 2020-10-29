@@ -29,5 +29,4 @@ public class Product {
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<OrderLines> orderLines;
-
 }

@@ -38,6 +38,7 @@ public class StoreController {
                 .map(store -> {
                     store.setName(storeRequest.getName());
                     store.setCountry(storeRequest.getCountry());
+
                     return storeRepository.save(store);
                 }).orElseThrow(() -> new ResourceNotFoundException("Store not found with id " + storeId));
     }

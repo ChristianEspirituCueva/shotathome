@@ -2,7 +2,9 @@ package com.pe.shotathome.converters;
 
 import com.pe.shotathome.dto.ProductDto;
 import com.pe.shotathome.entity.Product;
+import lombok.AllArgsConstructor;
 
+@AllArgsConstructor
 public class ProductConverter {
     public static Product DtoToEntity(ProductDto prd) {
         Product product=new Product();
