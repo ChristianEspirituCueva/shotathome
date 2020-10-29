@@ -12,6 +12,8 @@ import org.springframework.http.ResponseEntity;
 import javax.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 
 public class OrderController {
 
@@ -34,9 +36,8 @@ public class OrderController {
                                    @Valid @RequestBody Order orderRequest) {
         return orderRepository.findById(orderId)
                 .map(order -> {
-                    order.setTotal(orderRequest.getTotal());
-                    order.setOrderDate(orderRequest.getOrderDate());
                     order.setState(orderRequest.getState());
+                    order.setTotal(orderRequest.getTotal());
                     return orderRepository.save(order);
                 }).orElseThrow(() -> new ResourceNotFoundException("Order not found with id " + orderId));
     }

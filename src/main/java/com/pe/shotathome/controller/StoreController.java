@@ -36,8 +36,9 @@ public class StoreController {
                                    @Valid @RequestBody Store storeRequest) {
         return storeRepository.findById(storeId)
                 .map(store -> {
-                    store.setAddress(storeRequest.getAddress());
                     store.setName(storeRequest.getName());
+                    store.setCountry(storeRequest.getCountry());
+
                     return storeRepository.save(store);
                 }).orElseThrow(() -> new ResourceNotFoundException("Store not found with id " + storeId));
     }
